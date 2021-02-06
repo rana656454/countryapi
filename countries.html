@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <button onclick="myFunction()">dd</button>
+
+<div id="country-details">
+    <img alt="" id = "flag-img">
+    <h2 id ="cname"></h2>
+    <h3 id="population"></h3>
+
+</div>
+
+    <div class="container">
+        <div class="row d-flex justify-content-around" id= "row">
+
+        </div>
+    </div>
+
+    <script>
+     
+
+        const row1 = document.getElementById("row")
+
+fetch('https://restcountries.eu/rest/v2/all')
+.then(resp =>resp.json())
+.then(data => {
+
+  data.map(function(element){
+      const countryName = element.name
+     const bttn = document.createElement("button")
+  const link = element.flag
+        bttn.innerText="Details"
+        bttn.setAttribute("onclick",`displayDetails('${countryName}')`)
+    const col = document.createElement("div")
+    const countryCapital = document.createElement("h6")
+    countryCapital.innerText=element.capital
+    col.setAttribute("class","country")    
+      col.innerText=  element.name
+      row1.appendChild(col)
+      col.appendChild(countryCapital)
+      col.appendChild(bttn)
+     // col.style.backgroundImage=`url(${link})`
+      //col.style.backgroundSize="cover"
+    
+
+  })
+
+
+   
+}
+    
+
+
+    )
+
+
+    function displayDetails(dd){
+      fetch(`https://restcountries.eu/rest/v2/name/${dd}`)
+      .then(resp=>resp.json())
+      .then(data=>{
+          data.map(function(element){
+              const flagLink = element.flag
+              const flagImg = document.getElementById("flag-img")
+              flagImg.setAttribute("src",`${flagLink}`)
+              document.getElementById("country-details").style.display="block"
+              document.getElementById("population").innerText=`Population: ${element.population}`
+              document.getElementById("cname").innerText=element.name
+              
+          })
+      })
+      
+
+  }
+
+
+
+    </script>
+</body>
+</html>

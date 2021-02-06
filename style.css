@@ -1,0 +1,40 @@
+.country{
+    height: 300px;
+    width: 32%;
+    border: 2px solid;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: rgba(17, 212, 226, 0.733);
+}
+
+#flag-img{
+height: 100px;
+width: 200px;
+}
+
+#country-details{
+    display: none;
+    text-align: center;
+}
+
+#country-details h2{
+    font-size: 35px;
+    color: rgb(73, 73, 247);
+    font-weight: bold;
+}
+.country{
+    font-size: 25px;
+    color: rgb(234, 222, 245);
+    font-weight: bold;
+    
+}
+button{
+    font-size: 20px;
+    background-color: blue;
+    color: white;
+    border-radius: 5px;
+    height: 50px;
+    width: 70px;
+}
